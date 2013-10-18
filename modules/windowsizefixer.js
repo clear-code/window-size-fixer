@@ -44,7 +44,7 @@ WindowSizeFixer.prototype = {
 
   fixSize: function WST_fixSize() {
     var size = this.fixedSize;
-    this.window.resizeTO(size.width, size.height);
+    this.window.resizeTo(size.width, size.height);
   },
 
   initShortcut: function WST_initShortcut() {
