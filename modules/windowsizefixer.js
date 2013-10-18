@@ -56,7 +56,8 @@ WindowSizeFixer.prototype = {
       return;
 
     this._key = this.document.createElement('key');
-    this._key.addEventListener('command', this, false);
+    this._key.setAttribute('id', 'key_windowSizeFixer_fixSize');
+    this._key.setAttribute('oncommand', 'gWindowSizeFixer.fixSize()');
 
     if (key)
       this._key.setAttribute('key', key);
@@ -106,9 +107,6 @@ WindowSizeFixer.prototype = {
 
       case 'unload':
         return this.destroy();
-
-      case 'command':
-        return this.fixSize();
     }
   }
 };
