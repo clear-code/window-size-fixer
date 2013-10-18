@@ -77,6 +77,7 @@ WindowSizeFixer.prototype = {
   init: function WSF_init() {
     this.window.removeEventListener('DOMContentLoaded', this, true);
     this.window.addEventListener('load', this, false);
+    this.window.addEventListener('SSWindowStateReady', this, false);
     this.window.addEventListener('unload', this, false);
     this.initShortcut()
   },
@@ -88,8 +89,8 @@ WindowSizeFixer.prototype = {
     delete this.document;
   },
 
-  onStartup: function WST_onStartup() {
-    this.window.removeEventListener('load', this, false);
+  onStartup: function WST_onStartup(aEvent) {
+    this.window.removeEventListener(aEvent.type, this, false);
     if (prefs.getPref(DOMAIN + 'fixOnStartup'))
       this.fixSize();
   },
@@ -100,7 +101,8 @@ WindowSizeFixer.prototype = {
         return this.init();
 
       case 'load':
-        return this.onStartup();
+      case 'SSWindowStateReady':
+        return this.onStartup(aEvent);
 
       case 'unload':
         return this.destroy();
