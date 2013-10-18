@@ -42,9 +42,50 @@ WindowSizeFixer.prototype = {
                height: 100 };
   },
 
+  get currentScreenRect() {
+    var currentScreen = Cc['@mozilla.org/gfx/screenmanager;1']
+          .getService(Ci.nsIScreenManager)
+          .screenForRect(this.window.screenX,
+                         this.window.screenY,
+                         this.window.outerWidth,
+                         this.window.outerHeight);
+    var screenLeft   = {},
+        screenTop    = {},
+        screenWidth  = {},
+        screenHeight = {};
+    currentScreen.GetRect(screenLeft, screenTop, screenWidth, screenHeight);
+    return {
+      x:      screenLeft.value,
+      y:      screenTop.value,
+      width:  screenWidth.value,
+      height: screenHeight.value
+    };
+  },
+
   fixSize: function WST_fixSize() {
-    var size = this.fixedSize;
-    this.window.resizeTo(size.width, size.height);
+    var size   = this.fixedSize;
+    var rect   = this.currentScreenRect;
+    var x      = this.window.screenX;
+    var y      = this.window.screenY;
+    var width  = this.window.outerWidth;
+    var height = this.window.outerHeight;
+    var newX   = x;
+    var newY   = y;
+
+    if (x < rect.x)
+      newX = rect.x;
+    else if (x + size.width > rect.x + rect.width)
+      newX = x - ((x + size.width) - (rect.x + rect.width));
+
+    if (y < rect.y)
+      newY = rect.y;
+    else if (y + size.height > rect.y + rect.height)
+      newY = y - ((y + size.height) - (rect.y + rect.height));
+
+    if (newX != x || newY != y)
+      this.window.moveTo(newX, newY);
+    if (size.width != width || size.height != height)
+      this.window.resizeTo(size.width, size.height);
   },
 
   initShortcut: function WST_initShortcut() {
