@@ -47,7 +47,7 @@ WindowSizeFixer.prototype = {
     this.window.resizeTO(size.width, size.height);
   },
 
-  initShortcut: WST_initShortcut() {
+  initShortcut: function WST_initShortcut() {
     var key = prefs.get(DOMAIN + 'shortcut.key');
     var keyCode = prefs.get(DOMAIN + 'shortcut.keyCode');
     var modifiers = prefs.get(DOMAIN + 'shortcut.modifiers');
@@ -69,7 +69,7 @@ WindowSizeFixer.prototype = {
     this.keySet.appendChild(this._key);
   },
 
-  destroyShortcut: WST_destroyShortcut() {
+  destroyShortcut: function WST_destroyShortcut() {
     if (this._key)
       this.keySet.removeChild(this._key);
   },
