@@ -48,9 +48,9 @@ WindowSizeFixer.prototype = {
   },
 
   initShortcut: function WST_initShortcut() {
-    var key = prefs.get(DOMAIN + 'shortcut.key');
-    var keyCode = prefs.get(DOMAIN + 'shortcut.keyCode');
-    var modifiers = prefs.get(DOMAIN + 'shortcut.modifiers');
+    var key = prefs.getPref(DOMAIN + 'shortcut.key');
+    var keyCode = prefs.getPref(DOMAIN + 'shortcut.keyCode');
+    var modifiers = prefs.getPref(DOMAIN + 'shortcut.modifiers');
     if ((!key && !keyCode) ||
         (key && keyCode))
       return;
