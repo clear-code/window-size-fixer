@@ -105,7 +105,7 @@ WindowSizeFixer.prototype = {
     if (key)
       this._key.setAttribute('key', key);
     else
-      this._key.setAttribute('keyCode', keyCode);
+      this._key.setAttribute('keycode', keyCode);
 
     if (modifiers)
       this._key.setAttribute('modifiers', modifiers);
