@@ -71,21 +71,23 @@ WindowSizeFixer.prototype = {
     var height = this.window.outerHeight;
     var newX   = x;
     var newY   = y;
+    var newWidth = Math.min(rect.width, size.width);
+    var newHeight = Math.min(rect.height, size.height);
 
     if (x < rect.x)
       newX = rect.x;
-    else if (x + size.width > rect.x + rect.width)
-      newX = x - ((x + size.width) - (rect.x + rect.width));
+    else if (x + newWidth > rect.x + rect.width)
+      newX = x - ((x + newWidth) - (rect.x + rect.width));
 
     if (y < rect.y)
       newY = rect.y;
-    else if (y + size.height > rect.y + rect.height)
-      newY = y - ((y + size.height) - (rect.y + rect.height));
+    else if (y + newHeight > rect.y + rect.height)
+      newY = y - ((y + newHeight) - (rect.y + rect.height));
 
     if (newX != x || newY != y)
       this.window.moveTo(newX, newY);
-    if (size.width != width || size.height != height)
-      this.window.resizeTo(size.width, size.height);
+    if (newWidth != width || newHeight != height)
+      this.window.resizeTo(newWidth, newHeight);
   },
 
   initShortcut: function WST_initShortcut() {
