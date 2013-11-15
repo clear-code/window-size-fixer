@@ -49,7 +49,7 @@ WindowSizeFixer.prototype = {
         screenTop    = {},
         screenWidth  = {},
         screenHeight = {};
-    currentScreen.GetRect(screenLeft, screenTop, screenWidth, screenHeight);
+    currentScreen.GetAvailRect(screenLeft, screenTop, screenWidth, screenHeight);
     return {
       x:      screenLeft.value,
       y:      screenTop.value,
