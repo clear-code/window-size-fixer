@@ -24,10 +24,6 @@ WindowSizeFixer.prototype = {
   window : null, 
   document : null,
 
-  get keySet() {
-    return this.document.getElementById('mainKeyset');
-  },
-
   get fixedSize() {
     if (this._fixedSize)
       return this._fixedSize;
@@ -98,24 +94,40 @@ WindowSizeFixer.prototype = {
         (key && keyCode))
       return;
 
-    this._key = this.document.createElement('key');
-    this._key.setAttribute('id', 'key_windowSizeFixer_fixSize');
-    this._key.setAttribute('oncommand', 'gWindowSizeFixer.fixSize()');
+    var isMacOS = false;///mac/i.test(navigator.platform);
+    var modifiers = {
+      altKey : modifiers.indexOf('alt') > -1,
+      ctrlKey : modifiers.indexOf('control') > -1 ||
+                  (!isMacOS && modifiers.indexOf('accel') > -1),
+      metaKey : modifiers.indexOf('meta') > -1 ||
+                  (isMacOS && modifiers.indexOf('accel') > -1),
+      shiftKey : modifiers.indexOf('shift') > -1
+    };
+    this._keyListener = (function(aEvent) {
+      if (aEvent.altKey != modifiers.altKey ||
+          aEvent.ctrlKey != modifiers.ctrlKey ||
+          aEvent.metaKey != modifiers.metaKey ||
+          aEvent.shiftKey != modifiers.shiftKey)
+        return;
+      if (key) {
+        if (String.fromCharCode(aEvent.charCode).toLowerCase() != key.toLowerCase())
+          return;
+      }
+      else {
+        if (Ci.nsIDOMKeyEvent['DOM_' + keyCode] != aEvent.keyCode)
+          return;
+      }
+      this.fixSize();
+    }).bind(this);
 
-    if (key)
-      this._key.setAttribute('key', key);
-    else
-      this._key.setAttribute('keycode', keyCode);
-
-    if (modifiers)
-      this._key.setAttribute('modifiers', modifiers);
-
-    this.keySet.appendChild(this._key);
+    this.window.addEventListener('keypress', this._keyListener, true);
   },
 
   destroyShortcut: function WST_destroyShortcut() {
-    if (this._key)
-      this.keySet.removeChild(this._key);
+    if (this._keyListener) {
+      this.window.removeEventListener('keypress', this._keyListener, true);
+      delete this._keyListener;
+    }
   },
 
   init: function WSF_init() {
