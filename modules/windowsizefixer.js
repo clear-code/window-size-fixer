@@ -11,6 +11,7 @@ const Cu = Components.utils;
 Cu.import('resource://gre/modules/XPCOMUtils.jsm');
 
 XPCOMUtils.defineLazyModuleGetter(this, 'prefs', 'resource://windowsizefixer-modules/lib/prefs.js');
+XPCOMUtils.defineLazyModuleGetter(this, 'Services', 'resource://gre/modules/Services.jsm');
 
 const DOMAIN = 'extensions.windowsizefixer@clear-code.com.';
 
@@ -132,21 +133,31 @@ WindowSizeFixer.prototype = {
 
   init: function WSF_init() {
     this.window.removeEventListener('DOMContentLoaded', this, true);
+
     this.window.addEventListener('load', this, false);
+    this.waitingLoaded = true;
     this.window.addEventListener('SSWindowStateReady', this, false);
+    this.waitingRestored = true;
+
+    Services.obs.addObserver(this, 'sessionstore-windows-restored', false);
+    this.observing = true;
+
     this.window.addEventListener('unload', this, false);
+
     this.initShortcut()
   },
 
   destroy: function WSF_destroy() {
     this.window.removeEventListener('unload', this, false);
+    this.stopWaitingLoaded();
+    this.stopWaitingRestored();
+    this.stopObserve();
     this.destroyShortcut();
     delete this.window;
     delete this.document;
   },
 
-  onStartup: function WST_onStartup(aEvent) {
-    this.window.removeEventListener(aEvent.type, this, false);
+  onStartup: function WST_onStartup() {
     if (prefs.getPref(DOMAIN + 'fixOnStartup'))
       this.fixSize();
   },
@@ -157,11 +168,40 @@ WindowSizeFixer.prototype = {
         return this.init();
 
       case 'load':
+        this.stopWaitingLoaded();
+        this.onStartup();
+        return;
+
       case 'SSWindowStateReady':
-        return this.onStartup(aEvent);
+        this.stopWaitingRestored();
+        this.onStartup();
+        return;
 
       case 'unload':
         return this.destroy();
     }
+  },
+
+  stopWaitingLoaded: function WSF_stopWaiting() {
+    if (this.waitingLoaded)
+      this.window.removeEventListener('load', this, false);
+    this.waitingLoaded = false;
+  },,
+
+  stopWaitingRestored: function WSF_stopWaiting() {
+    if (this.waitingRestored)
+      this.window.removeEventListener('SSWindowStateReady', this, false);
+    this.waitingRestored = false;
+  },
+
+  observe: function WSF_observe(aSubject, aTopic, aData) {
+    this.stopObserve();
+    this.onStartup();
+  },
+
+  stopObserve: function WSF_stopObserve() {
+    if (this.observing)
+      Services.obs.removeObserver(this, 'sessionstore-windows-restored');
+    this.observing = false;
   }
 };
