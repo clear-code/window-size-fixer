@@ -196,7 +196,7 @@ WindowSizeFixer.prototype = {
 
   observe: function WSF_observe(aSubject, aTopic, aData) {
     this.stopObserve();
-    this.onStartup();
+    this.window.setTimeout(this.onStartup.bind(this), 0);
   },
 
   stopObserve: function WSF_stopObserve() {
