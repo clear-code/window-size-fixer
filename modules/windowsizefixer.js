@@ -186,7 +186,7 @@ WindowSizeFixer.prototype = {
     if (this.waitingLoaded)
       this.window.removeEventListener('load', this, false);
     this.waitingLoaded = false;
-  },,
+  },
 
   stopWaitingRestored: function WSF_stopWaiting() {
     if (this.waitingRestored)
