@@ -6,6 +6,7 @@
                    em:id="windowsizefixer@clear-code.com"
                    em:name="Window Size Fixer"
                    em:version="0.2"
+                   em:type="2"
                    em:description="Provides ability to fix the size of the main window."
                    em:creator="ClearCode Inc."
                    em:homepageURL="http://www.clear-code.com/">
