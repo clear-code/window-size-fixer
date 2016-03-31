@@ -1,4 +1,4 @@
 window-size-fixer
 =================
 
-Fixes the size of the main window.
+Fixes the initial size of the main window.
