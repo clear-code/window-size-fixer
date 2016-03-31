@@ -1,0 +1,13 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!ENTITY config.fixOnStartup.label           "Fix window size at the startup">
+<!ENTITY config.fixedSize.width.label        "Fixed width">
+<!ENTITY config.fixedSize.height.label       "Fixed height">
+<!ENTITY config.shortcut.keyCode.label       "Keycode of the shortcut for special keys">
+<!ENTITY config.shortcut.keyCode.description "For example, VK_F2 measn the F2 key. This must be blank if you set a key.">
+<!ENTITY config.shortcut.key.label           "Key of the shortcut">
+<!ENTITY config.shortcut.key.description     "Any character of a key. This must be blank if you set a keycode.">
+<!ENTITY config.shortcut.modifiers.label     "Modifiers of the shortcut">
+<!ENTITY config.shortcut.modifiers.description "Comma-separated combination of &quot;alt&quot;, &quot;control&quot;, &quot;meta&quot; (means &quot;⌘&quot; on OS X), and &quot;shift&quot;. A special value &quot;accel&quot; means &quot;control&quot; on Windows and Linux, &quot;⌘&quot; on OS X.">

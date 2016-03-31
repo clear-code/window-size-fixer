@@ -1,0 +1,13 @@
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+   - License, v. 2.0. If a copy of the MPL was not distributed with this
+   - file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+
+<!ENTITY config.fixOnStartup.label           "起動時のウィンドウの大きさを固定">
+<!ENTITY config.fixedSize.width.label        "固定する幅">
+<!ENTITY config.fixedSize.height.label       "固定する高さ">
+<!ENTITY config.shortcut.keyCode.label       "ショートカットに使う特殊キーのキーコード">
+<!ENTITY config.shortcut.keyCode.description "F2キーの場合はVK_F2のようなキーコード名になります。通常のキーを指定する場合は空にして下さい。">
+<!ENTITY config.shortcut.key.label           "ショートカットに使うキー">
+<!ENTITY config.shortcut.key.description     "キーの文字。キーコードを指定する場合は空にして下さい。">
+<!ENTITY config.shortcut.modifiers.label     "ショートカットに使うモディファイアキー">
+<!ENTITY config.shortcut.modifiers.description "&quot;alt&quot;, &quot;control&quot;, &quot;meta&quot; (OS Xでの&quot;⌘&quot;), &quot;shift&quot;のカンマ区切りの組み合わせ（特別な値として、&quot;accel&quot;と書くとWindowsとLinuxでは&quot;control&quot;、OS Xでは&quot;⌘&quot;の意味になります）">

@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!-- This Source Code Form is subject to the terms of the Mozilla Public
+     License, v. 2.0. If a copy of the MPL was not distributed with this
+     file, You can obtain one at http://mozilla.org/MPL/2.0/. -->
+<!DOCTYPE vbox SYSTEM "chrome://windowsizefixer/locale/windowsizefixer.dtd">
+<vbox xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+  <setting type="bool"
+           pref="extensions.windowsizefixer@clear-code.com.fixOnStartup"
+           title="&config.fixOnStartup.label;"/>
+  <setting type="integer"
+           pref="extensions.windowsizefixer@clear-code.com.fixedSize.width"
+           title="&config.fixedSize.width.label;"/>
+  <setting type="integer"
+           pref="extensions.windowsizefixer@clear-code.com.fixedSize.height"
+           title="&config.fixedSize.height.label;"/>
+
+  <setting type="string"
+           pref="extensions.windowsizefixer@clear-code.com.shortcut.key"
+           title="&config.shortcut.key.label;">
+    &config.shortcut.key.description;
+  </setting>
+  <setting type="string"
+           pref="extensions.windowsizefixer@clear-code.com.shortcut.keyCode"
+           title="&config.shortcut.keyCode.label;">
+    &config.shortcut.keyCode.description;
+  </setting>
+  <setting type="string"
+           pref="extensions.windowsizefixer@clear-code.com.shortcut.modifiers"
+           title="&config.shortcut.modifiers.label;">
+    &config.shortcut.modifiers.description;
+  </setting>
+</vbox>

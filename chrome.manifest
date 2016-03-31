@@ -3,6 +3,8 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 content windowsizefixer content/
+locale	windowsizefixer	en-US	locale/en-US/
+locale	windowsizefixer	ja	locale/ja/
 
 overlay chrome://browser/content/browser.xul chrome://windowsizefixer/content/browserOverlay.xul
 

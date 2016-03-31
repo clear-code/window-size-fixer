@@ -9,7 +9,9 @@
                    em:type="2"
                    em:description="Provides ability to fix the initial size of the main window."
                    em:creator="ClearCode Inc."
-                   em:homepageURL="http://www.clear-code.com/">
+                   em:homepageURL="http://www.clear-code.com/"
+                   em:optionsURL="chrome://windowsizefixer/content/config.xul"
+                   em:optionsType="2">
 
 
     <!--em:updateURL></em:updateURL-->
@@ -19,7 +21,7 @@
       <!-- Firefox -->
 	  <RDF:Description em:id="{ec8030f7-c20a-464f-9b0e-13a3a9e97384}"
 	                   em:minVersion="17.0"
-	                   em:maxVersion="40.0a1" />
+	                   em:maxVersion="48.0a1" />
 	</em:targetApplication>
   </RDF:Description>
 </RDF:RDF>
