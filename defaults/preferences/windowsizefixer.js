@@ -2,8 +2,8 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-// "WWWxHHH", "WWW,HHH", "WWW HHH", etc.
-pref("extensions.windowsizefixer@clear-code.com.fixedSize", "800x600");
+pref("extensions.windowsizefixer@clear-code.com.fixedSize.width", 800);
+pref("extensions.windowsizefixer@clear-code.com.fixedSize.height", 600);
 pref("extensions.windowsizefixer@clear-code.com.fixOnStartup", true);
 // ex.
 //  Ctrl(Cmd)-F2 => keyCode="VK_F2", key="", modifiers="accel"

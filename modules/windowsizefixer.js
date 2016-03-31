@@ -29,6 +29,13 @@ WindowSizeFixer.prototype = {
     if (this._fixedSize)
       return this._fixedSize;
 
+    var width = prefs.getPref(DOMAIN + 'fixedSize.width');
+    var height = prefs.getPref(DOMAIN + 'fixedSize.height');
+    if (width !== null && height !== null)
+      return { width: width,
+               height: height };
+
+    // for backward compatibility
     var size = prefs.getPref(DOMAIN + 'fixedSize');
     var matched = size.match(/^(\d+)[x,\s]\s*(\d+)$/);
     if (matched)
